@@ -9,6 +9,7 @@ LIBGL_ALWAYS_INDIRECT=1
 if [ -d "${PROFILEDIR}" ] ; then
     docker run --name "firefox-${PROFILE}" --rm --net=host \
 	   --ipc private \
+	   --shm-size 2g \
 	   --env="DISPLAY" \
 	   -v "${HOME}/.Xauthority:/home/surfer/.Xauthority:rw" \
 	   -v "${PROFILEDIR}:/home/surfer/profile:rw" \
