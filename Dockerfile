@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-20191224
 RUN apt-get -y update && apt-get install -y firefox-esr
 RUN useradd -m surfer
 USER surfer
