@@ -1,5 +1,5 @@
 #!/bin/bash
-BASEDIR="$PWD"
+BASEDIR="$HOME"
 PROFILE="$1"
 DOWNLOADS=/opt/vbox/media/shared/downloads
 ABSBASEDIR="$(realpath $BASEDIR)"
@@ -14,7 +14,7 @@ if [ -d "${PROFILEDIR}" ] ; then
 	   -v "${HOME}/.Xauthority:/home/surfer/.Xauthority:rw" \
 	   -v "${PROFILEDIR}:/home/surfer/profile:rw" \
 	   -v "${DOWNLOADS}:/home/surfer/Downloads:rw" \
-	   andzuc/debian-secff
+	   andzuc/debian-secff:2020012800
 else
     echo "Profile not found: ${PROFILE}"
 fi
