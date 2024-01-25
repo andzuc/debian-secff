@@ -1,7 +1,7 @@
 #!/bin/bash
 BASEDIR="$HOME"
 PROFILE="$1"
-DOWNLOADS=/opt/vbox/media/shared/downloads
+DOWNLOADS="${HOME}/Downloads"
 ABSBASEDIR="$(realpath $BASEDIR)"
 PROFILEDIR="${ABSBASEDIR}/secffprofile/${PROFILE}"
 LIBGL_ALWAYS_INDIRECT=1
