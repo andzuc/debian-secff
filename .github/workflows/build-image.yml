@@ -16,9 +16,10 @@ jobs:
   build-amd64:
     runs-on: ubuntu-latest
     steps:
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+      - name: Set version value
+        id: version
+        run: |
+          echo "value=$(date +'%Y%m%d').${{ github.run_number }}" >> $GITHUB_OUTPUT
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up QEMU
@@ -41,4 +42,4 @@ jobs:
             VERSION=${{ env.VERSION }}
           push: true
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:${{ steps.date.outputs.date }}.${{ github.run_number }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:${{ steps.version.outputs.value }}
