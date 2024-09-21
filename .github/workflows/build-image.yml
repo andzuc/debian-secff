@@ -35,10 +35,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v6
-        build-args: |
-            VERSION=${{ env.VERSION }}
         with:
           context: context
+          build-args: |
+            VERSION=${{ env.VERSION }}
           push: true
           platforms: linux/amd64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:${{ steps.date.outputs.date }}.${{ github.run_number }}
