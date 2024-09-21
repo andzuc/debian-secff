@@ -1,5 +1,7 @@
-FROM debian:12.7
-RUN apt-get -y update && apt-get install -y firefox-esr
+ARG VERSION=latest
+FROM debian:$VERSION
+RUN apt-get -y update && apt-get install -y \
+    firefox-esr
 RUN useradd -m surfer
 USER surfer
 ENV HOME /home/surfer

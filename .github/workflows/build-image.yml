@@ -2,7 +2,16 @@ name: build-image
 
 on:
   workflow_dispatch:
-    
+    inputs:
+      version:
+        description: 'Debian base Docker image tag (https://hub.docker.com/_/debian/tags)'
+        required: true
+        default: 'buster-20230109'
+
+env:
+  IMAGENAME: debian-secff
+  VERSION: ${{ github.event.inputs.version || vars.VERSION }}
+
 jobs:
   build-amd64:
     runs-on: ubuntu-latest
@@ -11,7 +20,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d')"
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -26,8 +35,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v6
+        build-args: |
+            VERSION=${{ env.VERSION }}
         with:
           context: context
           push: true
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/debian-secff:${{ steps.date.outputs.date }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGENAME }}:${{ steps.date.outputs.date }}.${{ github.run_number }}
