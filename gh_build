@@ -3,8 +3,8 @@
 if [ $# -ne 1 ]; then
     echo "$0: usage is:"
     echo "$0 [debian_version_tag]"
-    echo "example: gh_build bookworm-20240904"
-    echo "Debian base Docker image tags: https://hub.docker.com/_/debian/tags"
+    echo "example: gh_build bookworm-20240904.23"
+    echo "andzuc/debian-base base Docker image tag (https://hub.docker.com/repository/docker/andzuc/debian-base/tags)"
     exit 1
 fi
 
