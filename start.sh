@@ -14,7 +14,7 @@ if [ -d "${PROFILEDIR}" ] ; then
 	   -v "${HOME}/.Xauthority:/home/surfer/.Xauthority:rw" \
 	   -v "${PROFILEDIR}:/home/surfer/profile:rw" \
 	   -v "${DOWNLOADS}:/home/surfer/Downloads:rw" \
-	   andzuc/debian-secff:12.7.44.20240922.10
+	   andzuc/debian-secff:12.11.45.20250526.11
 else
     echo "Profile not found: ${PROFILE}"
 fi
